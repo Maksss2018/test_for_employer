@@ -20,7 +20,9 @@ const  App = ({items,getData})=> {
     const  HandleDeleteItem = (id) => setItemsArray(itemsArray.filter(item => item._id!==id)) ;
  return (
     <Router>
-      <Route  path="/" render={ props => <NavMenu /> }/>
+      <Route  path="/" render={ props => <NavMenu
+          countItems={itemsArray!==null?itemsArray.length:0}
+          countPrice={itemsArray!==null?itemsArray.reduce((acc,cur)=> acc+parseInt(cur.data.price),0):0} /> }/>
           <Route  path="/" render={ props => <MarketList
               deleteItem={HandleDeleteItem}
               list={itemsArray} {...props}/>} />

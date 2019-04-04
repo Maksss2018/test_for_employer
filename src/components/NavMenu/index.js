@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
+import AddShoppingCart from '@material-ui/icons/AddShoppingCart';
+import EuroSymbol from '@material-ui/icons/EuroSymbol';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -14,7 +17,7 @@ import {connect} from "react-redux";
 
 
 
-const NavMenu = ({classes}) => {
+const NavMenu = ({classes,countItems,countPrice}) => {
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -30,8 +33,17 @@ const NavMenu = ({classes}) => {
                     <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                         FatFish
                     </Typography>
-
-
+                    <div className={classes.grow} />
+                        <IconButton color="inherit">
+                            <Badge badgeContent={countItems} color="secondary">
+                                <AddShoppingCart />
+                            </Badge>
+                        </IconButton>
+                    <IconButton color="inherit">
+                        <Badge max={1000} badgeContent={countPrice} color="secondary">
+                            <EuroSymbol />
+                        </Badge>
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         </div>
