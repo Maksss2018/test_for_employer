@@ -52,6 +52,8 @@ const MarketList = ({classes,list,getData, deleteItem}) => {
                             actionIcon={
                                 <IconButton className={classes.icon}>
                                     <DeleteIcon id={tile._id} onClick={e=>{
+                                        /* not real necessary and correct way (because there is should be  component like Item )
+                                          part  but I want to add  some animation here */
                                         const trg =  $(`${tile._id}-container`);
                                         trg.classList = `${trg.classList} fadeOut animated `;
                                         setTimeout(()=>deleteItem(tile._id),800);
