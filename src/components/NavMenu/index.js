@@ -23,27 +23,29 @@ const NavMenu = ({classes,countItems,countPrice}) => {
             <AppBar position="static">
                 <Toolbar>
                     <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                     <img style={{
-                         height:"auto",
-                         maxHeight:"100%",
-                         width:"50px",
-                         backgroundColor:"#ffffff"
-                     }} src={`${process.env.PUBLIC_URL }/logo.svg`} alt=""/>
-                     </IconButton>
+                        <img style={{
+                            height:"auto",
+                            maxHeight:"100%",
+                            width:"50px",
+                            backgroundColor:"#ffffff"
+                        }} src={`${process.env.PUBLIC_URL }/logo.svg`} alt=""/>
+                    </IconButton>
                     <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                         FatFish
                     </Typography>
                     <div className={classes.grow} />
+                    <div style={{marginLeft:"auto"}} >
                         <IconButton color="inherit">
                             <Badge badgeContent={countItems} color="secondary">
                                 <AddShoppingCart />
                             </Badge>
                         </IconButton>
-                    <IconButton color="inherit">
-                        <Badge max={1000} badgeContent={countPrice} color="secondary">
-                            <EuroSymbol />
-                        </Badge>
-                    </IconButton>
+                        <IconButton color="inherit">
+                            <Badge max={10000} badgeContent={countPrice} color="secondary">
+                                <EuroSymbol />
+                            </Badge>
+                        </IconButton>
+                    </div>
                 </Toolbar>
             </AppBar>
         </div>

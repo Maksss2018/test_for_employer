@@ -21,6 +21,8 @@ const  App = ({items,getData})=> {
  return (
     <Router>
       <Route  path="/" render={ props => <NavMenu
+
+          animArr={itemsArray!==null?itemsArray.map(item =>`${item._id}-container`):[]}
           countItems={itemsArray!==null?itemsArray.length:0}
           countPrice={itemsArray!==null?itemsArray.reduce((acc,cur)=> acc+parseInt(cur.data.price),0):0} /> }/>
           <Route  path="/" render={ props => <MarketList
