@@ -1,3 +1,5 @@
+import {generate as id} from "shortid";
+
 export const basket = {"total_sum":0,"total_cont":0},
     options = [
     { "codeName":"category",
@@ -16,7 +18,7 @@ export const basket = {"total_sum":0,"total_cont":0},
     }
 ],
     items = [
-    { "active":false,
+    { _id:id() ,"active":false,
         "info":{
             "name":"Овсяная каша с фруктами",
             "category":1,
@@ -29,7 +31,7 @@ export const basket = {"total_sum":0,"total_cont":0},
         }
 
     },
-    { "active":false,
+    { _id:id() ,"active":false,
         "info":{
             "name":"Яичница глазунья с овощами на сковородке",
             "category":1,
@@ -42,7 +44,7 @@ export const basket = {"total_sum":0,"total_cont":0},
         }
 
     },
-    { "active":false,
+    { _id:id() ,"active":false,
         "info":{
             "name":"Сет азербайджанский завтрак",
             "category":1,
@@ -55,7 +57,7 @@ export const basket = {"total_sum":0,"total_cont":0},
         }
 
     },
-    { "active":false,
+    { _id:id() ,"active":false,
         "info":{
             "name":"Яичница с помидорами по-бакински",
             "category":1,
@@ -68,7 +70,7 @@ export const basket = {"total_sum":0,"total_cont":0},
         }
 
     },
-    { "active":false,
+    { _id:id() ,"active":false,
         "info":{
             "name":"Сырники со сметаной",
             "category":1,
@@ -81,7 +83,7 @@ export const basket = {"total_sum":0,"total_cont":0},
         }
 
     },
-    { "active":false,
+    { _id:id() ,"active":false,
         "info":{
             "name":"Шпинатный крем-суп",
             "category":2,
@@ -94,7 +96,7 @@ export const basket = {"total_sum":0,"total_cont":0},
         }
 
     },
-    { "active":false,
+    { _id:id() ,"active":false,
         "info":{
             "name":"Суп Пити",
             "category":2,
@@ -107,7 +109,7 @@ export const basket = {"total_sum":0,"total_cont":0},
         }
 
     },
-    { "active":false,
+    { _id:id() ,"active":false,
         "info":{
             "name":"Борщ украинский",
             "category":2,
@@ -120,7 +122,7 @@ export const basket = {"total_sum":0,"total_cont":0},
         }
 
     },
-    { "active":false,
+    { _id:id() ,"active":false,
         "info":{
             "name":"Суп Кюфта Бозбаш",
             "category":2,
@@ -133,7 +135,7 @@ export const basket = {"total_sum":0,"total_cont":0},
         }
 
     },
-    { "active":false,
+    { _id:id() ,"active":false,
         "info":{
             "name":"Картофель фри",
             "category":3,
@@ -146,7 +148,7 @@ export const basket = {"total_sum":0,"total_cont":0},
         }
 
     },
-    { "active":false,
+    { _id:id() ,"active":false,
         "info":{
             "name":"Картофель по-домашнему",
             "category":3,
@@ -159,7 +161,7 @@ export const basket = {"total_sum":0,"total_cont":0},
         }
 
     },
-    { "active":false,
+    { _id:id() ,"active":false,
         "info":{
             "name":"Рис с овощами",
             "category":3,

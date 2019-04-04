@@ -1,2 +1,3 @@
-export  const  GET_DATA = "GET_DATA";
-export  const  GET_OPTIONS = "GET_OPTIONS";
+export  const  GET_DATA = "GET_DATA",
+    GET_OPTIONS = "GET_OPTIONS",
+    DELETE_ITEM = "DELETE_ITEM";
