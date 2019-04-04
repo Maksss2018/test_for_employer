@@ -1,0 +1,40 @@
+{
+  "name": "store_app",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://maksss2018.github.io/test_for_OSSystem",
+  "author": "Malyi M.G malyimaksym37@gmail.com",
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "history": "^4.9.0",
+    "material-ui": "^0.20.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^6.0.1",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-router-redux": "^4.0.8",
+    "react-scripts": "2.1.8",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "style-loader": "^0.23.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "prop-types": "^15.7.2"
+  }
+}
