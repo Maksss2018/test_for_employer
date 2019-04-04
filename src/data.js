@@ -1,4 +1,21 @@
-export const items = [
+export const basket = {"total_sum":0,"total_cont":0},
+    options = [
+    { "codeName":"category",
+        "className":"",
+        "name":"Категория",
+        "byName":false,
+        "select":["Все","Завтраки","Первые блюда","Гарниры"]
+    },
+    { "codeName":"price",
+        "className":"price-",
+        "byName":true,
+        "name":"Цена",
+        "befor":"До",
+        "after":"грн.",
+        "select":["0","30","50","100","150"]
+    }
+],
+    items = [
     { "active":false,
         "info":{
             "name":"Овсяная каша с фруктами",
@@ -154,22 +171,5 @@ export const items = [
             "counter":0
         }
 
-    }
-];
-export const basket = {"total_sum":0,"total_cont":0};
-export const options = [
-    { "codeName":"category",
-        "className":"",
-        "name":"Категория",
-        "byName":false,
-        "select":["Все","Завтраки","Первые блюда","Гарниры"]
-    },
-    { "codeName":"price",
-        "className":"price-",
-        "byName":true,
-        "name":"Цена",
-        "befor":"До",
-        "after":"грн.",
-        "select":["0","30","50","100","150"]
     }
 ];
