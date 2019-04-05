@@ -18,7 +18,7 @@ import {connect} from "react-redux";
 
 
 
-const NavMenu = ({classes,countItems,countPrice}) => {
+const NavMenu = ({classes,countItems,countPrice,deleteAll}) => {
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -36,7 +36,7 @@ const NavMenu = ({classes,countItems,countPrice}) => {
                     </Typography>
                     <div className={classes.grow} />
                     <div style={{marginLeft:"auto"}} >
-                        <IconButton onClick={e => console.warn("delete all ")} color="inherit">
+                        <IconButton onClick={e => deleteAll()} color="inherit">
                             <DeleteIcon />
                         </IconButton>
                         <IconButton color="inherit">
