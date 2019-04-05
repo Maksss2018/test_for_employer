@@ -9,8 +9,11 @@ import Typography from '@material-ui/core/Typography';
 import AddShoppingCart from '@material-ui/icons/AddShoppingCart';
 import EuroSymbol from '@material-ui/icons/EuroSymbol';
 import DeleteIcon from '@material-ui/icons/Delete';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import { withStyles } from '@material-ui/core/styles';
+
+import ComponentMenu from "./../ComponentMenu";
 
 import {getOptions} from "../../actions";
 import {connect} from "react-redux";
@@ -23,13 +26,19 @@ const NavMenu = ({classes,countItems,countPrice,deleteAll}) => {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
+
+                    <ComponentMenu classes={classes.menuButton} />
+
                     <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                        <img style={{
-                            height:"auto",
-                            maxHeight:"100%",
-                            width:"50px",
-                            backgroundColor:"#ffffff"
-                        }} src={`${process.env.PUBLIC_URL }/logo.svg`} alt=""/>
+                        <img
+                            style={{
+                                height:"auto",
+                                maxHeight:"100%",
+                                width:"50px",
+                                backgroundColor:"#ffffff"
+                            }}
+                            src={`${process.env.PUBLIC_URL }/logo.svg`}
+                            alt=""/>
                     </IconButton>
                     <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                         FatFish
@@ -46,6 +55,11 @@ const NavMenu = ({classes,countItems,countPrice,deleteAll}) => {
                         </IconButton>
                         <IconButton color="inherit">
                             <Badge max={10000} badgeContent={countPrice} color="secondary">
+                                <EuroSymbol />
+                            </Badge>
+                        </IconButton>
+                        <IconButton color="inherit">
+                            <Badge max={10000} badgeContent={countItems!==0?Math.round(countPrice/countItems):0} color="secondary">
                                 <EuroSymbol />
                             </Badge>
                         </IconButton>

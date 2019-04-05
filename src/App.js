@@ -7,7 +7,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 /* COMPONENTS START */
 import MarketList from './components/MarketList';
 import NavMenu from './components/NavMenu';
-import {deleteItem, getData} from "./actions";
+import Form from './components/Form';
+
+import {getData} from "./actions";
 import {withStyles} from "@material-ui/core";
 /* COMPONENTS END */
 
@@ -19,17 +21,25 @@ const  App = ({items,getData})=> {
     },[items]);
     const  HandleDeleteItem = (id) => setItemsArray(itemsArray.filter(item => item._id!==id)) ;
     const  HandleDeleteAll = (id) => setItemsArray([]) ;
+    const HandleAddItem = newItem =>  setItemsArray([{...newItem} ,...itemsArray]);
     return (
-        <Router>
-            <Route  path="/" render={ props => <NavMenu
+        <>
+            <Route path="/" render={ props => <NavMenu
                 deleteAll={HandleDeleteAll}
                 animArr={itemsArray!==null?itemsArray.map(item =>`${item._id}-container`):[]}
                 countItems={itemsArray!==null?itemsArray.length:0}
-                countPrice={itemsArray!==null?itemsArray.reduce((acc,cur)=> acc+parseInt(cur.data.price),0):0} /> }/>
-            <Route  path="/" render={ props => <MarketList
+                countPrice={itemsArray!==null?itemsArray.reduce((acc,cur)=> acc+parseInt(cur.price),0):0} /> }/>
+            <Route path="/form" render={ props => <Form
+                deleteItem={HandleDeleteItem}
+                addItem={HandleAddItem}
+                {...props}
+            />} />
+            <Route   path="/" render={ props => <MarketList
                 deleteItem={HandleDeleteItem}
                 list={itemsArray} {...props}/>} />
-        </Router>
+
+
+        </>
     );
 };
 

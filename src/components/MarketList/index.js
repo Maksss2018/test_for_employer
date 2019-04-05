@@ -11,7 +11,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 
 import DeleteIcon from '@material-ui/icons/Delete';
-
+const dummyPlaceholder = "http://lorempixel.com/400/200/food";
 const urlImg = "https://raw.githubusercontent.com/Maksss2018/beetroot-test/master/i/";
 /*
 { "active":false,
@@ -36,7 +36,6 @@ const MarketList = ({classes,list,getData, deleteItem}) => {
             setListOfItems(list);
         }
     },[list]);
-    console.log(list);
 
     return (
         <div  className={classes.root}>
@@ -44,25 +43,28 @@ const MarketList = ({classes,list,getData, deleteItem}) => {
                 <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
                     <ListSubheader component="div">Our Menu:</ListSubheader>
                 </GridListTile>
-                {listOfItems.map( (tile)=> (
-                    <GridListTile id={`${tile._id}-container`} key={tile._id}>
-                        <img src={`${urlImg}${tile.info.img}`} alt={tile.info.name} />
-                        <GridListTileBar
-                            title={tile.info.name}
-                            actionIcon={
-                                <IconButton className={classes.icon}>
-                                    <DeleteIcon id={tile._id} onClick={e=>{
-                                        /* not real necessary and correct way (because there is should be  component like Item )
-                                          part  but I want to add  some animation here */
-                                        const trg =  $(`${tile._id}-container`);
-                                        trg.classList = `${trg.classList} fadeOut animated `;
-                                        setTimeout(()=>deleteItem(tile._id),800);
-                                    }} />
-                                </IconButton>
-                            }
-                        />
-                    </GridListTile>
-                ))}
+                {listOfItems.map( (tile)=>{
+                     let {img,_id,name} = tile;
+                    return  (
+                        <GridListTile id={`${ _id}-container`} key={ _id}>
+                            <img src={img!==null?`${urlImg}${img}`:dummyPlaceholder} alt={name} />
+                            <GridListTileBar
+                                title={ name}
+                                actionIcon={
+                                    <IconButton className={classes.icon}>
+                                        <DeleteIcon id={ _id} onClick={e=>{
+                                            /* not real necessary and correct way (because there is should be  component like Item )
+                                              part  but I want to add  some animation here */
+                                            const trg =  $(`${ _id}-container`);
+                                            trg.classList = `${trg.classList} fadeOut animated `;
+                                            setTimeout(()=>deleteItem( _id),800);
+                                        }} />
+                                    </IconButton>
+                                }
+                            />
+                        </GridListTile>
+                    )
+                })}
             </GridList>
 
         </div>

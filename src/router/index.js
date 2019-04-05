@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter as Router , Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router , Route, Switch, DefaultRoute } from 'react-router-dom';
 //import createHistory from 'history/createBrowserHistory';
 import { Provider } from 'react-redux';
 import configureStore from '../store/configure-store';
@@ -14,7 +14,8 @@ const  RouterCustom= ()=> {
         <Router  >
             <MuiThemeProvider>
                 <Switch>
-                    <Route  path="/" component={App} />
+                    <App />
+                    <Route exact path="/" component={App} />
                 </Switch>
             </MuiThemeProvider>
         </Router>
