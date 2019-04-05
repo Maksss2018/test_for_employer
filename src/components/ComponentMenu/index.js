@@ -3,13 +3,10 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import {  NavLink } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import IconButton from "../NavMenu";
 
-
 import MenuIcon from '@material-ui/icons/Menu';
-
-
 
 const ComponentMenu = (props) => {
     let [anchor, setAnchor] =  useState(null);
@@ -39,13 +36,13 @@ const ComponentMenu = (props) => {
                 onClose={ handleClose}
             >
                 <MenuItem onClick={handleClose}>
-                    <NavLink exect to={"/"}>Our menu</NavLink>
+                    <Link exect to={"/"}>Our menu</Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                    <NavLink  to={"/form"}>add new item</NavLink>
+                    <Link  to={"/form"}>add new item</Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                    <NavLink  to={"/logout"} >Logout</NavLink>
+                    <Link  to={"/logout"} >Logout</Link>
                 </MenuItem>
             </Menu>
         </>
