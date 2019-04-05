@@ -14,6 +14,7 @@
     "select":["0","30","50","100","150"]}
 ],
   "items": [{ "active":false,
+    "_id": "Z6Nav7I0is",
     "info":{
       "name":"Овсяная каша с фруктами",
       "category":1,
@@ -26,7 +27,7 @@
     }
 
   },
-    { "active":false,
+    { "active":false,"_id": "7zI-AXYHDv",
       "info":{
         "name":"Яичница глазунья с овощами на сковородке",
         "category":1,
@@ -39,7 +40,7 @@
       }
 
     },
-    { "active":false,
+    { "active":false,"_id": "cirLIeUV_v",
       "info":{
         "name":"Сет азербайджанский завтрак",
         "category":1,
@@ -52,7 +53,7 @@
       }
 
     },
-    { "active":false,
+    { "active":false,"_id": "oZl88iPGEd",
       "info":{
         "name":"Яичница с помидорами по-бакински",
         "category":1,
@@ -65,7 +66,7 @@
       }
 
     },
-    { "active":false,
+    { "active":false,"_id": "nXD8MmRVYR",
       "info":{
         "name":"Сырники со сметаной",
         "category":1,
@@ -78,7 +79,7 @@
       }
 
     },
-    { "active":false,
+    { "active":false,"_id": "Lj0T5J5U7h",
       "info":{
         "name":"Шпинатный крем-суп",
         "category":2,
@@ -91,7 +92,7 @@
       }
 
     },
-    { "active":false,
+    { "active":false,"_id": "lNeYdETxlS",
       "info":{
         "name":"Суп Пити",
         "category":2,
@@ -104,7 +105,7 @@
       }
 
     },
-    { "active":false,
+    { "active":false,"_id": "M6_15im_7f",
       "info":{
         "name":"Борщ украинский",
         "category":2,
@@ -117,7 +118,7 @@
       }
 
     },
-    { "active":false,
+    { "active":false,"_id": "8hqDBWioGK",
       "info":{
         "name":"Суп Кюфта Бозбаш",
         "category":2,
@@ -130,7 +131,7 @@
       }
 
     },
-    { "active":false,
+    { "active":false,"_id": "zebhek2CRM",
       "info":{
         "name":"Картофель фри",
         "category":3,
@@ -143,7 +144,7 @@
       }
 
     },
-    { "active":false,
+    { "active":false,"_id": "8hqD46512351BWioGK",
       "info":{
         "name":"Картофель по-домашнему",
         "category":3,
@@ -156,7 +157,7 @@
       }
 
     },
-    { "active":false,
+    { "active":false,"_id": "zebhek2C6454RM",
       "info":{
         "name":"Рис с овощами",
         "category":3,

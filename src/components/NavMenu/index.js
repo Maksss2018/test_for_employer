@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 import AddShoppingCart from '@material-ui/icons/AddShoppingCart';
 import EuroSymbol from '@material-ui/icons/EuroSymbol';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -35,6 +36,9 @@ const NavMenu = ({classes,countItems,countPrice}) => {
                     </Typography>
                     <div className={classes.grow} />
                     <div style={{marginLeft:"auto"}} >
+                        <IconButton onClick={e => console.warn("delete all ")} color="inherit">
+                            <DeleteIcon />
+                        </IconButton>
                         <IconButton color="inherit">
                             <Badge badgeContent={countItems} color="secondary">
                                 <AddShoppingCart />
