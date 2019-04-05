@@ -3,7 +3,8 @@ import  {
     GET_OPTIONS,
     DELETE_ITEM
 } from "./../constans";
-import  {items,options} from "./../data.js";
+//import  {items,options} from "./../data.js";
+import  {items,options} from "./../data.json";
 
 export const getData = (options) => {
     return (dispatch) => {
