@@ -11,6 +11,9 @@ import PlusOneRounded from '@material-ui/icons/PlusOneRounded';
 import Clear from '@material-ui/icons/Clear';
 import Grid from '@material-ui/core/Grid';
 
+
+import {connect} from "react-redux";
+
 const initialData = {
     "active":false,
     "_id": "",
@@ -23,7 +26,7 @@ const initialData = {
 };
 
 
-function Form({classes,addItem}) {
+function Form({classes,addItem,addItemLocal}) {
     let [state,setState] = useState(initialData);
     //   useEffect();
     //
@@ -37,7 +40,14 @@ function Form({classes,addItem}) {
     const  handleSubmit = (event) => {
         event.preventDefault();
         state._id = id();
-        addItem(state);
+
+        if(localStorage.newList){
+            let oldList =JSON.parse(localStorage.newList);
+            localStorage.newList =JSON.stringify([{...state},...oldList]);
+        }else {
+            localStorage.newList =JSON.stringify([{...state}]);
+        }
+
         setState(initialData);
     };
 
@@ -105,4 +115,5 @@ const styles = theme => ({
 });
 
 
-export default withStyles(styles)(Form);
+
+export default withStyles(styles)(Form)

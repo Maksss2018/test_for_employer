@@ -15,7 +15,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import ComponentMenu from "./../ComponentMenu";
 
-import {getOptions} from "../../actions";
+//import {getOptions} from "../../actions";
 import {connect} from "react-redux";
 
 
@@ -89,7 +89,7 @@ const mapStateToProps = (state) => {
     }
 };
 const mapDispatchToProps = (dispatch) => ({
-    getOptions: () => dispatch(getOptions()),
+  //  getOptions: () => dispatch(getOptions()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(

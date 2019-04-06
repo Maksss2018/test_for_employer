@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import configureStore from './store/configure-store';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 /* COMPONENTS START */
+import MarketGridList from './components/MarketGridList';
 import MarketList from './components/MarketList';
 import NavMenu from './components/NavMenu';
 import Form from './components/Form';
@@ -21,7 +22,15 @@ const  App = ({items,getData})=> {
     },[items]);
     const  HandleDeleteItem = (id) => setItemsArray(itemsArray.filter(item => item._id!==id)) ;
     const  HandleDeleteAll = (id) => setItemsArray([]) ;
-    const HandleAddItem = newItem =>  setItemsArray([{...newItem} ,...itemsArray]);
+    const  HandleAddItem = newItem =>{
+         if(localStorage.newList){
+             let oldList =JSON.parse(localStorage.newList);
+             localStorage.newList =JSON.stringify([{...newItem},...oldList]);
+         }else {
+             localStorage.newList =JSON.stringify([{...newItem}]);
+         }
+      //  setItemsArray([{...newItem} ,...itemsArray]);
+    };
     return (
         <>
             <Route path="/" render={ props => <NavMenu
@@ -34,9 +43,12 @@ const  App = ({items,getData})=> {
                 addItem={HandleAddItem}
                 {...props}
             />} />
-            <Route   path="/" render={ props => <MarketList
+            <Route exact  path="/" render={ props => <MarketGridList
                 deleteItem={HandleDeleteItem}
                 list={itemsArray} {...props}/>} />
+            <Route exact  path="/form" render={ props => <MarketList
+                deleteItem={HandleDeleteItem}
+                 {...props}/>} />
 
 
         </>

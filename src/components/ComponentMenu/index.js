@@ -11,10 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 const ComponentMenu = (props) => {
     let [anchor, setAnchor] =  useState(null);
 
-    const handleClick = event => {
-        setAnchor(event.currentTarget);
-        console.dir(event.target);
-    };
+    const handleClick = event => setAnchor(event.currentTarget);
 
     const handleClose = () => {
         setAnchor(null);
