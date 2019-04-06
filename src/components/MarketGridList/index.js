@@ -29,7 +29,7 @@ const urlImg = "https://raw.githubusercontent.com/Maksss2018/beetroot-test/maste
     }
 */
 const $ = (str) => document.getElementById(str);
-const MarketGridList = ({classes,list,getData, deleteItem}) => {
+const MarketGridList = ({classes,list,getData, deleteItem,match}) => {
     let [listOfItems,setListOfItems] = useState([]);
     useEffect(()=>{
         if(list!==null){
@@ -51,6 +51,7 @@ const MarketGridList = ({classes,list,getData, deleteItem}) => {
                             <GridListTileBar
                                 title={ name}
                                 actionIcon={
+                                    match.params.user === "admin" ?
                                     <IconButton className={classes.icon}>
                                         <DeleteIcon id={ _id} onClick={e=>{
                                             /* not real necessary and correct way (because there is should be  component like Item )
@@ -59,7 +60,7 @@ const MarketGridList = ({classes,list,getData, deleteItem}) => {
                                             trg.classList = `${trg.classList} fadeOut animated `;
                                             setTimeout(()=>deleteItem( _id),800);
                                         }} />
-                                    </IconButton>
+                                    </IconButton>:""
                                 }
                             />
                         </GridListTile>

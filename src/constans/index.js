@@ -1,3 +1,6 @@
 export  const  GET_DATA = "GET_DATA",
     GET_OPTIONS = "GET_OPTIONS",
-    DELETE_ITEM = "DELETE_ITEM";
+    DELETE_ITEM = "DELETE_ITEM",
+    UPDATE_DATA = "UPDATE_DATA",
+    LOG_IN = "LOG_IN",
+    LOG_OUT ="LOG_OUT";

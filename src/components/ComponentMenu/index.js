@@ -4,18 +4,27 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {  Link } from 'react-router-dom';
-import IconButton from "../NavMenu";
 
 import MenuIcon from '@material-ui/icons/Menu';
+import {connect} from "react-redux";
+import {withStyles} from "@material-ui/core";
 
-const ComponentMenu = (props) => {
-    let [anchor, setAnchor] =  useState(null);
+import {login, logOut} from "../../actions"
 
-    const handleClick = event => setAnchor(event.currentTarget);
+const ComponentMenu = ({user,login, logOut,location,history}) => {
+    let [anchor, setAnchor] =  useState(null),
+        [userStatus,setUserStatus] = useState(false);
+    useEffect(()=>{
+        setUserStatus(user);
+    },[location]);
 
-    const handleClose = () => {
-        setAnchor(null);
-    };
+    const handleClick = event => {
+
+            setAnchor(event.currentTarget)
+    },
+        handleClose = () => {
+            setAnchor(null);
+        };
 
     return (
         <>
@@ -33,13 +42,21 @@ const ComponentMenu = (props) => {
                 onClose={ handleClose}
             >
                 <MenuItem onClick={handleClose}>
-                    <Link exect to={"/"}>Our menu</Link>
+                    {
+                        location.pathname.split("/")[1] === "admin"?<Link exect to="/admin">Our menu</Link>
+                            :<Link exect to="/">Our menu </Link>
+                    }
+
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <Link  to={"/form"}>add new item</Link>
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <Link  to={"/logout"} >Logout</Link>
+                {location.pathname ==="/admin"?<MenuItem onClick={handleClose}>
+                    <Link  to={"/admin/form"}>add new item</Link>
+                </MenuItem>:""}
+                <MenuItem  onClick={e => {
+                    handleClose(e);
+                    localStorage.user = location.pathname.split("/")[1]!=="admin"?"admin":"";
+                }}>
+                    {location.pathname ==="/admin"?<Link  to={"/"} > log-out</Link>
+                        :<Link  to={"/admin"} > login</Link>}
                 </MenuItem>
             </Menu>
         </>
@@ -51,4 +68,14 @@ ComponentMenu.propTypes = {
 
 };
 
-export default ComponentMenu;
+const mapStateToProps = (state) => {
+    return {
+        user: Object.assign(false,state.user)
+    }
+};
+const mapDispatchToProps = (dispatch) => ({
+    login: () => dispatch(login()),
+    logOut: () => dispatch(logOut()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ComponentMenu)

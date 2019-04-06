@@ -21,13 +21,14 @@ import {connect} from "react-redux";
 
 
 
-const NavMenu = ({classes,countItems,countPrice,deleteAll}) => {
+const NavMenu = ({classes,countItems,countPrice,deleteAll,location,match}) => {
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
 
-                    <ComponentMenu classes={classes.menuButton} />
+                    <ComponentMenu location={location}  classes={classes.menuButton} />
 
                     <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
                         <img
@@ -45,9 +46,9 @@ const NavMenu = ({classes,countItems,countPrice,deleteAll}) => {
                     </Typography>
                     <div className={classes.grow} />
                     <div style={{marginLeft:"auto"}} >
-                        <IconButton onClick={e => deleteAll()} color="inherit">
+                        {match.params.user === "admin"? <IconButton onClick={e => deleteAll()} color="inherit">
                             <DeleteIcon />
-                        </IconButton>
+                        </IconButton>:""}
                         <IconButton color="inherit">
                             <Badge badgeContent={countItems} color="secondary">
                                 <AddShoppingCart />
@@ -85,7 +86,7 @@ const styles = {
 
 const mapStateToProps = (state) => {
     return {
-        options: state.options
+        user: state.user
     }
 };
 const mapDispatchToProps = (dispatch) => ({

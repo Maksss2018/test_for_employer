@@ -15,7 +15,7 @@ const  RouterCustom= ()=> {
             <MuiThemeProvider>
                 <Switch>
                     <App />
-                    <Route exact path="/" component={App} />
+                    <Route exact path="/" render={props => <App {...props} />} />
                 </Switch>
             </MuiThemeProvider>
         </Router>

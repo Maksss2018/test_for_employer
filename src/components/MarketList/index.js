@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Button from '@material-ui/core/Button';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import {connect} from "react-redux";
+import PlusOneRounded from "../Form";
 
+import {updateList} from "../../actions"
 
 const dummyPlaceholder = "http://lorempixel.com/400/200/food";
 const urlImg = "https://raw.githubusercontent.com/Maksss2018/beetroot-test/master/i/";
@@ -26,21 +29,13 @@ const styles = theme => ({
     },
 });
 
-const getDataFromStorage = async ()=>{
-    if(localStorage.newList){
-        document.newList = await JSON.parse(localStorage.newList);
-    }
-};
 
-const MarketList = ({ classes,items, location}) => {
-    console.log("!!!!");
+const MarketList = ({ classes,items, location,updateList}) => {
     let [newList,setNewList] = useState(null);
-    console.dir(location);
     useEffect(()=>{
         const int =  setInterval(()=>{
             if(localStorage.newList){
                 setNewList(JSON.parse(localStorage.newList));
-
             }
         },1500);
         return () =>  clearInterval(int);
@@ -109,13 +104,12 @@ MarketList.propTypes = {
 const mapStateToProps = (state) => {
     return {
         items: state.items,
-
     }
 };
 const mapDispatchToProps = (dispatch) => ({
-    // deleteTrainingPlace: (key) => dispatch(getData(key)),
+    updateList: (array) => dispatch(updateList(array)),
 });
 
-export default connect( mapStateToProps, false)(
+export default connect( mapStateToProps, mapDispatchToProps)(
     withStyles(styles)(MarketList)
 )
