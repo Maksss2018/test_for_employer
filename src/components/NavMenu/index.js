@@ -8,12 +8,15 @@ import Typography from '@material-ui/core/Typography';
 
 import AddShoppingCart from '@material-ui/icons/AddShoppingCart';
 import EuroSymbol from '@material-ui/icons/EuroSymbol';
+import LocalDiningIcon from '@material-ui/icons/LocalDining';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import { withStyles } from '@material-ui/core/styles';
 
 import ComponentMenu from "./../ComponentMenu";
+import CustomTooltips from "./../CustomToolTips";
+
 
 //import {getOptions} from "../../actions";
 import {connect} from "react-redux";
@@ -49,21 +52,27 @@ const NavMenu = ({classes,countItems,countPrice,deleteAll,location,match}) => {
                         {match.params.user === "admin"? <IconButton onClick={e => deleteAll()} color="inherit">
                             <DeleteIcon />
                         </IconButton>:""}
+                        <CustomTooltips text={" total  number of dishes in menu "} >
                         <IconButton color="inherit">
                             <Badge badgeContent={countItems} color="secondary">
                                 <AddShoppingCart />
                             </Badge>
                         </IconButton>
+                        </CustomTooltips>
+                        <CustomTooltips text={" total  price of all in the  menu "} >
                         <IconButton color="inherit">
                             <Badge max={10000} badgeContent={countPrice} color="secondary">
                                 <EuroSymbol />
                             </Badge>
                         </IconButton>
-                        <IconButton color="inherit">
-                            <Badge max={10000} badgeContent={countItems!==0?Math.round(countPrice/countItems):0} color="secondary">
-                                <EuroSymbol />
-                            </Badge>
-                        </IconButton>
+                        </CustomTooltips>
+                        <CustomTooltips text={" average dish price "} >
+                            <IconButton color="inherit">
+                                <Badge max={10000} badgeContent={countItems!==0?Math.round(countPrice/countItems):0} color="secondary">
+                                    <LocalDiningIcon />
+                                </Badge>
+                            </IconButton>
+                        </CustomTooltips>
                     </div>
                 </Toolbar>
             </AppBar>
