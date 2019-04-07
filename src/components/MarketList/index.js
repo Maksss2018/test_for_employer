@@ -30,7 +30,7 @@ const styles = theme => ({
 });
 
 
-const MarketList = ({ classes,items, location,updateList}) => {
+const MarketList = ({ classes,items, location,updateList,history}) => {
     let [newList,setNewList] = useState(null);
     useEffect(()=>{
         const int =  setInterval(()=>{
@@ -38,6 +38,7 @@ const MarketList = ({ classes,items, location,updateList}) => {
                 setNewList(JSON.parse(localStorage.newList));
             }
         },1500);
+
         return () =>  clearInterval(int);
     });
     return (

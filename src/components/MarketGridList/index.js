@@ -29,14 +29,18 @@ const urlImg = "https://raw.githubusercontent.com/Maksss2018/beetroot-test/maste
     }
 */
 const $ = (str) => document.getElementById(str);
-const MarketGridList = ({classes,list,getData, deleteItem,match}) => {
+const MarketGridList = ({classes,list,getData, deleteItem,match, history,location}) => {
     let [listOfItems,setListOfItems] = useState([]);
     useEffect(()=>{
         if(list!==null){
             setListOfItems(list);
         }
     },[list]);
-
+ useEffect(()=>{
+     if(localStorage.user!=="admin"&&location.pathname.split("/")[1] === "admin"){
+         history.push("/");
+     }
+ },[]);
     return (
         <div  className={classes.root}>
             <GridList cellHeight={180} className={classes.gridList}>

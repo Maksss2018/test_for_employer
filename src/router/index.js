@@ -1,25 +1,27 @@
-import React, {Component} from "react";
-import { BrowserRouter as Router , Route, Switch, DefaultRoute } from 'react-router-dom';
+import React, {useEffect} from "react";
+import { BrowserRouter as Router , Route, Switch} from 'react-router-dom';
 //import createHistory from 'history/createBrowserHistory';
 import { Provider } from 'react-redux';
 import configureStore from '../store/configure-store';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 /* COMPONENTS START */
 import App from './../App';
+import ErrorPage from "./../components/ErrorPage";
 /* COMPONENTS END */
 
 const  RouterCustom= ()=> {
     const store = configureStore;
-    return (<Provider store={store}>
-        <Router  >
+    return (
+        <Provider store={store}>
             <MuiThemeProvider>
-                <Switch>
-                    <App />
-                    <Route exact path="/" render={props => <App {...props} />} />
-                </Switch>
+                <Router >
+
+                        <App  />
+
+                </Router>
             </MuiThemeProvider>
-        </Router>
-    </Provider>);
+        </Provider>
+    );
 };
 
 export default RouterCustom;

@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 
 
 import {connect} from "react-redux";
+import MarketList from "../../components/MarketList";
 
 const initialData = {
     "active":false,
@@ -26,10 +27,14 @@ const initialData = {
 };
 
 
-function Form({classes,addItem,addItemLocal}) {
+function Form({classes,addItem,addItemLocal,history}) {
     let [state,setState] = useState(initialData);
-    //   useEffect();
-    //
+       useEffect(()=>{
+           if(localStorage.user!=="admin"){
+               history.push("/");
+           }
+       },[]);
+
     let [name,setName]=useState("");
     const  handleChange = name => event => {
         setState({...state,[name]: event.target.value});
@@ -52,6 +57,7 @@ function Form({classes,addItem,addItemLocal}) {
     };
 
     return (
+        <>
         <form onSubmit={handleSubmit}
               className={classes.container}
               noValidate
@@ -92,6 +98,8 @@ function Form({classes,addItem,addItemLocal}) {
                 </Grid>
             </Grid>
         </form>
+            <MarketList/>
+            </>
     );
 }
 
