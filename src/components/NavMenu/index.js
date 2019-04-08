@@ -30,24 +30,19 @@ const NavMenu = ({classes,countItems,countPrice,deleteAll,location,match}) => {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                        <img
-                            style={{
-                                height:"auto",
-                                maxHeight:"100%",
-                                width:"50px",
-                                backgroundColor:"#ffffff"
-                            }}
-                            src={`${process.env.PUBLIC_URL }/logo.svg`}
-                            alt=""/>
-                    </IconButton>
-                    <Typography style={{
-                        marginLeft:"1rem",
-                        marginRight:"1rem"
-                    }}
-                                className={classes.title} variant="h6" color="inherit" noWrap>
-                        FatFish
-                    </Typography>
+                    <CustomTooltips text={" FatFish "} >
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                            <img
+                                style={{
+                                    height:"auto",
+                                    maxHeight:"100%",
+                                    width:"50px",
+                                    backgroundColor:"#ffffff"
+                                }}
+                                src={`${process.env.PUBLIC_URL }/logo.svg`}
+                                alt=""/>
+                        </IconButton>
+                    </CustomTooltips>
 
                     <CustomTooltips  text={" total  number of dishes in menu "} >
                         <IconButton color="inherit">
@@ -73,7 +68,7 @@ const NavMenu = ({classes,countItems,countPrice,deleteAll,location,match}) => {
 
                     <div className={classes.grow} />
                     <div style={{marginLeft:"auto"}} >
-                        {match.params.user === "admin"? <CustomTooltips text={" total  number of dishes in menu "} >
+                        {match.params.user === "admin"? <CustomTooltips text={" delete all "} >
                             <IconButton onClick={e => deleteAll()} color="inherit">
                                 <DeleteIcon />
                             </IconButton>
