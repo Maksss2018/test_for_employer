@@ -42,12 +42,14 @@ const NavMenu = ({classes,countItems,countPrice,deleteAll,location,match}) => {
                             alt=""/>
                     </IconButton>
                     <Typography style={{
-                        marginLeft:"2rem"
-                    }} className={classes.title} variant="h6" color="inherit" noWrap>
+                        marginLeft:"1rem",
+                        marginRight:"1rem"
+                    }}
+                                className={classes.title} variant="h6" color="inherit" noWrap>
                         FatFish
                     </Typography>
 
-                    <CustomTooltips text={" total  number of dishes in menu "} >
+                    <CustomTooltips  text={" total  number of dishes in menu "} >
                         <IconButton color="inherit">
                             <Badge badgeContent={countItems} color="secondary">
                                 <AddShoppingCart />
