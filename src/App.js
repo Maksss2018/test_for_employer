@@ -9,7 +9,7 @@ import ErrorPage from './components/ErrorPage';
 import NavMenu from './components/NavMenu';
 import Form from './components/Form';
 
-import {getData} from "./actions";
+import {getData,updateList} from "./actions";
 import {withStyles} from "@material-ui/core";
 /* COMPONENTS END */
 
@@ -21,8 +21,12 @@ const  App = (props)=> {
         getData();
         setItemsArray(items)
     },[items]);
-    const  HandleDeleteItem = (id) => setItemsArray(itemsArray.filter(item => item._id!==id)) ,
-        HandleDeleteAll = (id) => setItemsArray([]),
+    const  HandleDeleteItem = (id) =>{
+            setItemsArray(itemsArray.filter(item => item._id!==id));
+        },
+        HandleDeleteAll = (id) =>{
+            setItemsArray([])
+        },
         HandleAddItem = newItem =>{
             if(localStorage.newList){
                 let oldList =JSON.parse(localStorage.newList);

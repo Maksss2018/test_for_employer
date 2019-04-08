@@ -30,9 +30,6 @@ const NavMenu = ({classes,countItems,countPrice,deleteAll,location,match}) => {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-
-                    <ComponentMenu location={location}  classes={classes.menuButton} />
-
                     <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
                         <img
                             style={{
@@ -44,35 +41,44 @@ const NavMenu = ({classes,countItems,countPrice,deleteAll,location,match}) => {
                             src={`${process.env.PUBLIC_URL }/logo.svg`}
                             alt=""/>
                     </IconButton>
-                    <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                    <Typography style={{
+                        marginLeft:"2rem"
+                    }} className={classes.title} variant="h6" color="inherit" noWrap>
                         FatFish
                     </Typography>
-                    <div className={classes.grow} />
-                    <div style={{marginLeft:"auto"}} >
-                        {match.params.user === "admin"? <IconButton onClick={e => deleteAll()} color="inherit">
-                            <DeleteIcon />
-                        </IconButton>:""}
-                        <CustomTooltips text={" total  number of dishes in menu "} >
+
+                    <CustomTooltips text={" total  number of dishes in menu "} >
                         <IconButton color="inherit">
                             <Badge badgeContent={countItems} color="secondary">
                                 <AddShoppingCart />
                             </Badge>
                         </IconButton>
-                        </CustomTooltips>
-                        <CustomTooltips text={" total  price of all in the  menu "} >
+                    </CustomTooltips>
+                    <CustomTooltips text={" total  price of all in the  menu "} >
                         <IconButton color="inherit">
                             <Badge max={10000} badgeContent={countPrice} color="secondary">
                                 <EuroSymbol />
                             </Badge>
                         </IconButton>
-                        </CustomTooltips>
-                        <CustomTooltips text={" average dish price "} >
-                            <IconButton color="inherit">
-                                <Badge max={10000} badgeContent={countItems!==0?Math.round(countPrice/countItems):0} color="secondary">
-                                    <LocalDiningIcon />
-                                </Badge>
+                    </CustomTooltips>
+                    <CustomTooltips text={" average dish price "} >
+                        <IconButton color="inherit">
+                            <Badge max={10000} badgeContent={countItems!==0?Math.round(countPrice/countItems):0} color="secondary">
+                                <LocalDiningIcon />
+                            </Badge>
+                        </IconButton>
+                    </CustomTooltips>
+
+                    <div className={classes.grow} />
+                    <div style={{marginLeft:"auto"}} >
+                        {match.params.user === "admin"? <CustomTooltips text={" total  number of dishes in menu "} >
+                            <IconButton onClick={e => deleteAll()} color="inherit">
+                                <DeleteIcon />
                             </IconButton>
-                        </CustomTooltips>
+                        </CustomTooltips>:""}
+
+                        <ComponentMenu location={location}  classes={classes.menuButton} />
+
                     </div>
                 </Toolbar>
             </AppBar>

@@ -19,6 +19,10 @@ const ErrorPage = ({location}) => {
             </Grid>
         </div>
     );
-}
+};
+
+PropTypes.ErrorPage = {
+    location: PropTypes.object.isRequired
+};
 
 export default ErrorPage;

@@ -9,11 +9,17 @@ import  {
 //import  {items,options} from "./../data.js";
 import  {items,options} from "./../data.json";
 
-export const updateList = (array) => (dispatch) => {
+export const updateList = (id=null,array) => (dispatch) => {
+    let result;
     console.log("!!!!");
+    if(id!==null){
+      result =  array.filter(item => item._id!==id)
+    } else {
+        result = []
+    }
     return  dispatch ({
         type: UPDATE_DATA,
-        payload: array
+        payload: result
     })
 };
 

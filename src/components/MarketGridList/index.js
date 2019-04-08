@@ -48,7 +48,7 @@ const MarketGridList = ({classes,list,getData, deleteItem,match, history,locatio
                     <ListSubheader component="div">Our Menu:</ListSubheader>
                 </GridListTile>
                 {listOfItems.map( (tile)=>{
-                     let {img,_id,name} = tile;
+                     let {img,_id,name,price} = tile;
                     return  (
                         <GridListTile id={`${ _id}-container`} key={ _id}>
                             <img src={img!==null?`${urlImg}${img}`:dummyPlaceholder} alt={name} />
@@ -62,7 +62,7 @@ const MarketGridList = ({classes,list,getData, deleteItem,match, history,locatio
                                               part  but I want to add  some animation here */
                                             const trg =  $(`${ _id}-container`);
                                             trg.classList = `${trg.classList} fadeOut animated `;
-                                            setTimeout(()=>deleteItem( _id),800);
+                                            setTimeout(()=>deleteItem( _id),600);
                                         }} />
                                     </IconButton>:""
                                 }
