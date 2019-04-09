@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import {connect} from "react-redux";
 import PlusOneRounded from "../Form";
 
-import {updateList} from "../../actions"
+import {  updateList, getNewList } from "../../actions"
 
 const dummyPlaceholder = "http://lorempixel.com/400/200/food";
 const urlImg = "https://raw.githubusercontent.com/Maksss2018/beetroot-test/master/i/";
@@ -30,8 +30,10 @@ const styles = theme => ({
 });
 
 
-const MarketList = ({ classes,items, location,updateList,history}) => {
-    let [newList,setNewList] = useState(null);
+const MarketList = ({ classes,items, getNewList, newList}) => {
+    // console.dir(newList);
+    // let [newListData,setNewListData] = useState(newList);
+  /* let [newList,setNewList] = useState(null);
     useEffect(()=>{
         const int =  setInterval(()=>{
             if(localStorage.newList){
@@ -40,7 +42,7 @@ const MarketList = ({ classes,items, location,updateList,history}) => {
         },1500);
 
         return () =>  clearInterval(int);
-    });
+    });*/
     return (
         <Grid container
               direction="row"
@@ -105,10 +107,12 @@ MarketList.propTypes = {
 const mapStateToProps = (state) => {
     return {
         items: state.items,
+        newList :state.newList
     }
 };
 const mapDispatchToProps = (dispatch) => ({
     updateList: (array) => dispatch(updateList(array)),
+    getNewList : () => dispatch(getNewList())
 });
 
 export default connect( mapStateToProps, mapDispatchToProps)(

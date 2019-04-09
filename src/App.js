@@ -9,17 +9,18 @@ import ErrorPage from './components/ErrorPage';
 import NavMenu from './components/NavMenu';
 import Form from './components/Form';
 
-import {getData,updateList} from "./actions";
+import {getData,updateList, getNewList} from "./actions";
 import {withStyles} from "@material-ui/core";
 /* COMPONENTS END */
 
 const  App = (props)=> {
-    let {items,getData,location,history} = props;
+    let {items,getData,location,history, getNewList} = props;
     let [itemsArray,setItemsArray] = useState(null),
         [path,setPath] = useState(null);
     useEffect(()=>{
         getData();
-        setItemsArray(items)
+        setItemsArray(items);
+        getNewList();
     },[items]);
     const  HandleDeleteItem = (id) =>{
             setItemsArray(itemsArray.filter(item => item._id!==id));
@@ -78,7 +79,8 @@ const mapStateToProps = (state) => {
     }
 };
 const mapDispatchToProps = (dispatch) => ({
-    getData: () => dispatch(getData())
+    getData: () => dispatch(getData()),
+    getNewList: ()=> dispatch(getNewList())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

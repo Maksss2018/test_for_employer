@@ -15,9 +15,7 @@ const  RouterCustom= ()=> {
         <Provider store={store}>
             <MuiThemeProvider>
                 <Router >
-
-                        <App  />
-
+                        <App />
                 </Router>
             </MuiThemeProvider>
         </Provider>

@@ -12,8 +12,11 @@ import Clear from '@material-ui/icons/Clear';
 import Grid from '@material-ui/core/Grid';
 
 
-import {connect} from "react-redux";
+//import {connect} from "react-redux";
+
 import MarketList from "../../components/MarketList";
+import {getNewList, updateList, updateNewList} from "../../actions"
+import {connect} from "react-redux";
 
 const initialData = {
     "active":false,
@@ -27,7 +30,7 @@ const initialData = {
 };
 
 
-function Form({classes,addItem,addItemLocal,history}) {
+function Form({classes,addItem,addItemLocal,updateNewList,history}) {
     let [state,setState] = useState(initialData);
        useEffect(()=>{
            if(localStorage.user!=="admin"){
@@ -36,23 +39,14 @@ function Form({classes,addItem,addItemLocal,history}) {
        },[]);
 
     let [name,setName]=useState("");
-    const  handleChange = name => event => {
-        setState({...state,[name]: event.target.value});
-    };
-    const  handleClear = event => {
-        setState(initialData);
-    };
-    const  handleSubmit = (event) => {
+    const  handleChange = name => event => setState({...state,[name]: event.target.value});
+
+    const  handleClear = event =>  setState(initialData);
+
+    const  handleSubmit = async (event) => {
         event.preventDefault();
-        state._id = id();
-
-        if(localStorage.newList){
-            let oldList =JSON.parse(localStorage.newList);
-            localStorage.newList =JSON.stringify([{...state},...oldList]);
-        }else {
-            localStorage.newList =JSON.stringify([{...state}]);
-        }
-
+         state._id = await id();
+        updateNewList(state);
         setState(initialData);
     };
 
@@ -121,7 +115,20 @@ const styles = theme => ({
         width: 200,
     },
 });
+//updatNewList
 
 
+const mapStateToProps = (state) => {
+    return {
+        items: state.items,
+        newList :state.newList
+    }
+};
+const mapDispatchToProps = (dispatch) => ({
+    updateList: (array) => dispatch(updateList(array)),
+    updateNewList : (array) => dispatch(updateNewList(array))
+});
 
-export default withStyles(styles)(Form)
+export default connect( mapStateToProps, mapDispatchToProps)(
+    withStyles(styles)(Form)
+)
