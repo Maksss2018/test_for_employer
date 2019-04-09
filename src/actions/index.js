@@ -32,6 +32,16 @@ export const updateNewList = (item) => (dispatch) => {
         payload:  trg
     })
 };
+export const delNewListItem = (id) => (dispatch) => {
+
+    let trg =  JSON.parse(localStorage.newList),
+     res = trg.filter( item => item._id!==id);
+    localStorage.newList =  JSON.stringify(res);
+    return  dispatch ({
+        type: DELETE_ITEM_NEW_LIST,
+        payload:  res
+    })
+};
 
 export const updateList = (id=null,array) => (dispatch) => {
     let result;

@@ -9,10 +9,16 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+
+
+import IconButton from '@material-ui/core/IconButton';
+import Clear from '@material-ui/icons/Clear';
+
+
 import {connect} from "react-redux";
 import PlusOneRounded from "../Form";
 
-import {  updateList, getNewList } from "../../actions"
+import {  updateList, getNewList, delNewListItem } from "../../actions"
 
 const dummyPlaceholder = "http://lorempixel.com/400/200/food";
 const urlImg = "https://raw.githubusercontent.com/Maksss2018/beetroot-test/master/i/";
@@ -30,19 +36,11 @@ const styles = theme => ({
 });
 
 
-const MarketList = ({ classes,items, getNewList, newList}) => {
-    // console.dir(newList);
-    // let [newListData,setNewListData] = useState(newList);
-  /* let [newList,setNewList] = useState(null);
-    useEffect(()=>{
-        const int =  setInterval(()=>{
-            if(localStorage.newList){
-                setNewList(JSON.parse(localStorage.newList));
-            }
-        },1500);
-
-        return () =>  clearInterval(int);
-    });*/
+const MarketList = ({ classes,items, delNewListItem, getNewList, newList}) => {
+ /*   const handleDelete = id =>{
+        delNewListItem(id);
+    };
+*/
     return (
         <Grid container
               direction="row"
@@ -66,6 +64,14 @@ const MarketList = ({ classes,items, getNewList, newList}) => {
                                 </React.Fragment>
                             }
                         />
+                        <IconButton
+                            style={{
+                                marginLeft:"auto"
+                            }}
+                            onClick={e => delNewListItem(i._id)}
+                            color="inherit">
+                            <Clear />
+                        </IconButton>
                     </ListItem>):"No data in storage"}
                 </List>
             </Grid>
@@ -112,7 +118,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => ({
     updateList: (array) => dispatch(updateList(array)),
-    getNewList : () => dispatch(getNewList())
+    getNewList : () => dispatch(getNewList()),
+    delNewListItem : (id) => dispatch(delNewListItem(id))
 });
 
 export default connect( mapStateToProps, mapDispatchToProps)(

@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+
 import IconButton from '@material-ui/core/IconButton';
+import Clear from '@material-ui/icons/Clear';
 
 import {generate as id} from "shortid";
 import PlusOneRounded from '@material-ui/icons/PlusOneRounded';
-import Clear from '@material-ui/icons/Clear';
+
 import Grid from '@material-ui/core/Grid';
 
 
