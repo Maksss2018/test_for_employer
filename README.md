@@ -1,5 +1,5 @@
 ## This project was created by me to  show my  knowledge's in react , react-redux
-## technical task for this test was given by one of IT company's that  found me  in the net
+**technical task for this test was given by one of IT company's that  found me  in the net**
 
 So here is  what the task were:
 Position :  Front-end developer(ReactJs + Redux)
@@ -67,17 +67,18 @@ Technology's stack: Redux
 
 
 ### npm modules  that have been  used in this project:
- [Create React App](https://github.com/facebook/create-react-app) - was used  like template to make developing process going faster.
+ [Create React App](https://github.com/facebook/create-react-app) -
+  was used  like template to make developing process going faster.
  npm modules that I've  added to "cra" template:
- @material-ui/core - this module I  used first time in my life - usually   I'm using  npm reactstrap
- @material-ui/icons - the same  with this module 
- material-ui - and this one
- react-dom
- react-redux
- react-router
- react-router-dom
- react-router-redux
- redux
- redux-thunk
- sass-loader
- shortid - this module I  used to generate id  for  static data in "../../src/data.json"
+ * @material-ui/core - this module I  used first time in my life - usually   I'm using  npm reactstrap
+ * @material-ui/icons - the same  with this module 
+ * material-ui - and this one
+ * react-dom
+ * react-redux
+ * react-router
+ * react-router-dom
+ * react-router-redux
+ * redux
+ * redux-thunk
+ * sass-loader
+ * shortid - this module I  used to generate id  for  static data in "../../src/data.json"
