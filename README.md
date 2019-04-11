@@ -2,22 +2,22 @@
 **technical task for this test was given by one of IT company's that  found me  in the net**
 
 So here is  what the task were:
-Position :  Front-end developer(ReactJs + Redux)
-conception : e-market (only catalog of goods + functionality like adding new goods to the list)   
+- Position :  Front-end developer(ReactJs + Redux)
+- conception : e-market (only catalog of goods + functionality like adding new goods to the list)   
 
 ## First level : 
 
-Technology's stack: nodejs, Webpack, npm
-Libraries : React, material-ui
+- Technology's stack: nodejs, Webpack, npm
+- Libraries : React, material-ui
 
-- Header it should contain the company logo, it should be imported into the component and attached by the webpack loader
+- [x] Header it should contain the company logo, it should be imported into the component and attached by the webpack loader
 
-- The catalog of all goods, should be taken from the json-file, in
+- [x] The catalog of all goods, should be taken from the json-file, in
  each product must be present: Product Name, Image, Short Description
 
-- On the product catalog, you can delete the product by clicking on button.
+- [x] On the product catalog, you can delete the product by clicking on button.
 
-- At the bottom of the catalog or to the right (left) where
+- [x] At the bottom of the catalog or to the right (left) where
  According to the developer it is more convenient to post information:
     * The total number of goods,
     * the sum of the prices of all goods
@@ -27,49 +27,50 @@ Libraries : React, material-ui
 
 ## Second level :
 
-Technology's stack: Babel, es6
-Libraries : react-router
+- Technology's stack: Babel, es6
+- Libraries : react-router
 
-- The menu that opens by clicking on the icon in top of header.
+- [x] The menu that opens by clicking on the icon in top of header.
   In the menu there should be a link to the product catalog page and to the product addition page.
 
-- New products need to be recorded in localStorage, images are not required (to simplify the task).
+- [x] New products need to be recorded in localStorage, images are not required (to simplify the task).
 
-- The application when navigating through the pages should not
+- [x] The application when navigating through the pages should not
     reload the browser page. 
     
 ## Third level : 
 
-Technology's stack: Redux
+- Technology's stack: Redux
 
-- Component to display information about all
+- [x] Component to display information about all
   products should be displayed on all pages and dynamically respond to adding,
   deleting of goods items  (must be connected to Redux).
  
-- The application must be implemented system user roles (without login).
+- [x] The application must be implemented system user roles (without login).
   That is, the role system must be implemented (admin and user).
  
-- The is should be to role of user`s admin  and ordinary user.
+- [x] The is should be to role of user`s admin  and ordinary user.
   
-- The role and current user enter manually in
+- [ ] The role and current user enter manually in
   application state before its launch. 
   **I`ve  ignored this one option and make role changed  with login button, with out of verification -
    to make codding faster**
-- Product add page must be unavailable
+
+- [x] Product add page must be unavailable
   for the average user.
 
-- In the case of a transition to this page should be
+- [ ] In the case of a transition to this page should be
   Displayed page with a ban.
    **I`ve made an 404 massage**
 
-- The directory must also be changed.
+- [x] The directory must also be changed.
   There should be no delete function for a regular user.  
 
 
 ### npm modules  that have been  used in this project:
  [Create React App](https://github.com/facebook/create-react-app) -
   was used  like template to make developing process going faster.
- npm modules that I've  added to "cra" template:
+ - npm modules that I've  added to "cra" template:
  * @material-ui/core - this module I  used first time in my life - usually   I'm using  npm reactstrap
  * @material-ui/icons - the same  with this module 
  * material-ui - and this one
