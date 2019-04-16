@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -19,6 +19,7 @@ import Grid from '@material-ui/core/Grid';
 import MarketList from "../../components/MarketList";
 import {getNewList, updateList, updateNewList} from "../../actions"
 import {connect} from "react-redux";
+import {StoreContext} from "../../context/StoreContext";
 
 const initialData = {
     "active":false,
@@ -32,70 +33,78 @@ const initialData = {
 };
 
 
-function Form({classes,addItem,addItemLocal,updateNewList,history}) {
-    let [state,setState] = useState(initialData);
-       useEffect(()=>{
-           if(localStorage.user!=="admin"){
-               history.push("/");
-           }
-       },[]);
+function Form({classes,history}) {
+    const { state, dispatch, actions } = useContext(StoreContext);
+    let { addItem,addItemLocal,updateNewList } = actions;
+    let [stateForm,setState] = useState(initialData);
+    useEffect(()=>{
+        if(localStorage.user!=="admin"){
+            history.push("/");
+        }
+    },[]);
 
     let [name,setName]=useState("");
-    const  handleChange = name => event => setState({...state,[name]: event.target.value});
+
+    const  handleChange = name => event => setState({...stateForm,[name]: event.target.value});
 
     const  handleClear = event =>  setState(initialData);
 
     const  handleSubmit = async (event) => {
+
         event.preventDefault();
-         state._id = await id();
+
+        state._id = await id();
+
         updateNewList(state);
+
         setState(initialData);
+
     };
 
     return (
         <>
-        <form onSubmit={handleSubmit}
-              className={classes.container}
-              noValidate
-              autoComplete="on">
-            <Grid container
-                  direction="row"
-                  justify="center"
-                  alignItems="center"
-            >
-                <Grid item  xs={2}>
-                    <TextField
-                        id="outlined-name"
-                        label="Name"
-                        value={state.name}
-                        onChange={ handleChange('name')}
-                        margin="normal"
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item  xs={2}>
+            <form data-testid="form" onSubmit={handleSubmit}
+                  className={classes.container}
+                  noValidate
+                  autoComplete="on">
+                <Grid container
+                      direction="row"
+                      justify="center"
+                      alignItems="center"
+                >
+                    <Grid item  xs={2}>
+                        <TextField
+                            id="outlined-name"
+                            label="Name"
+                            value={state.name}
+                            onChange={ handleChange('name')}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                    </Grid>
+                    <Grid item  xs={2}>
 
-                    <TextField
-                        id="outlined-name"
-                        label="Price"
-                        value={state.price}
-                        onChange={ handleChange('price')}
-                        margin="normal"
-                        variant="outlined"
-                    />
+                        <TextField
+                            id="outlined-name"
+                            label="Price"
+                            value={state.price}
+                            onChange={ handleChange('price')}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                    </Grid>
+                    <Grid item  xs={2}>
+                        <IconButton type  color="inherit">
+                            <PlusOneRounded />
+                        </IconButton>
+                        <IconButton onClick={handleClear} color="inherit">
+                            <Clear />
+                        </IconButton>
+                    </Grid>
                 </Grid>
-                <Grid item  xs={2}>
-                    <IconButton type  color="inherit">
-                        <PlusOneRounded />
-                    </IconButton>
-                    <IconButton onClick={handleClear} color="inherit">
-                        <Clear />
-                    </IconButton>
-                </Grid>
-            </Grid>
-        </form>
+            </form>
             <MarketList/>
-            </>
+        </>
     );
 }
 
@@ -120,17 +129,6 @@ const styles = theme => ({
 //updatNewList
 
 
-const mapStateToProps = (state) => {
-    return {
-        items: state.items,
-        newList :state.newList
-    }
-};
-const mapDispatchToProps = (dispatch) => ({
-    updateList: (array) => dispatch(updateList(array)),
-    updateNewList : (array) => dispatch(updateNewList(array))
-});
 
-export default connect( mapStateToProps, mapDispatchToProps)(
-    withStyles(styles)(Form)
-)
+export default  withStyles(styles)(Form)
+

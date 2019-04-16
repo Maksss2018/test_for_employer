@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useState,useEffect} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,14 +18,33 @@ import ComponentMenu from "./../ComponentMenu";
 import CustomTooltips from "./../CustomToolTips";
 
 
-//import {getOptions} from "../../actions";
-import {connect} from "react-redux";
+import {StoreContext} from "../../context/StoreContext";
 
 
 
 
-const NavMenu = ({classes,countItems,countPrice,deleteAll,location,match}) => {
-
+const NavMenu = ({classes,location,match}) => {
+    let {
+        state
+        ,actions
+    } = useContext(StoreContext),
+    {
+        deleteItem
+    } = actions,
+        {
+            items
+        } = state;
+    let [totalPrice,setTotalPrice ] = useState(0),
+        [totalLength,setTotalLength ] = useState(0);
+    //items!==null?items.reduce((acc,cur)=> acc+parseInt(cur.price),0):0
+    useEffect(()=>{
+        if(items!==null){
+            console.dir(state);/*
+            setTotalPrice(items.items.reduce((acc,cur)=> acc+parseInt(cur.price),0));
+            setTotalLength(items.items.length);
+            */
+        }
+    },[items]);
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -46,21 +65,21 @@ const NavMenu = ({classes,countItems,countPrice,deleteAll,location,match}) => {
 
                     <CustomTooltips  text={" total  number of dishes in menu "} >
                         <IconButton color="inherit">
-                            <Badge badgeContent={countItems} color="secondary">
+                            <Badge badgeContent={totalLength} color="secondary">
                                 <AddShoppingCart />
                             </Badge>
                         </IconButton>
                     </CustomTooltips>
                     <CustomTooltips text={" total  price of all in the  menu "} >
                         <IconButton color="inherit">
-                            <Badge max={10000} badgeContent={countPrice} color="secondary">
+                            <Badge max={10000} badgeContent={totalPrice} color="secondary">
                                 <EuroSymbol />
                             </Badge>
                         </IconButton>
                     </CustomTooltips>
                     <CustomTooltips text={" average dish price "} >
                         <IconButton color="inherit">
-                            <Badge max={10000} badgeContent={countItems!==0?Math.round(countPrice/countItems):0} color="secondary">
+                            <Badge max={10000} badgeContent={totalLength!==0?Math.round(totalPrice/totalLength):0} color="secondary">
                                 <LocalDiningIcon />
                             </Badge>
                         </IconButton>
@@ -69,7 +88,7 @@ const NavMenu = ({classes,countItems,countPrice,deleteAll,location,match}) => {
                     <div className={classes.grow} />
                     <div style={{marginLeft:"auto"}} >
                         {match.params.user === "admin"? <CustomTooltips text={" delete all "} >
-                            <IconButton onClick={e => deleteAll()} color="inherit">
+                            <IconButton onClick={e => deleteItem(null,false)} color="inherit">
                                 <DeleteIcon />
                             </IconButton>
                         </CustomTooltips>:""}
@@ -96,15 +115,5 @@ const styles = {
     },
 };
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    }
-};
-const mapDispatchToProps = (dispatch) => ({
-  //  getOptions: () => dispatch(getOptions()),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-    withStyles(styles)(NavMenu)
-)
+export default withStyles(styles)(NavMenu)

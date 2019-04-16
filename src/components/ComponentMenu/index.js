@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -6,13 +6,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {  Link } from 'react-router-dom';
 
 import MenuIcon from '@material-ui/icons/Menu';
-import {connect} from "react-redux";
 import {withStyles} from "@material-ui/core";
 
-import {login, logOut} from "../../actions"
+import {StoreContext} from "../../context/StoreContext";
 
-const ComponentMenu = ({user,login, logOut,location,history}) => {
-    let [anchor, setAnchor] =  useState(null),
+const ComponentMenu = ({location,history}) => {
+    const { state, dispatch, actions } = useContext(StoreContext);
+    let { user } = state,
+        { login, logOut } = actions,
+        [anchor, setAnchor] =  useState(null),
         [userStatus,setUserStatus] =useState(false);
  useEffect(()=>{
      setUserStatus(location.pathname.split("/")[1] ==="admin");
@@ -72,14 +74,4 @@ ComponentMenu.propTypes = {
 
 };
 
-const mapStateToProps = (state) => {
-    return {
-        user: Object.assign(false,state.user)
-    }
-};
-const mapDispatchToProps = (dispatch) => ({
-    login: () => dispatch(login()),
-    logOut: () => dispatch(logOut()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ComponentMenu)
+export default ComponentMenu;

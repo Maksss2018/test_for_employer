@@ -1,8 +1,5 @@
-import React,{useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {getData,deleteItem} from '../../actions/'
-
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -11,6 +8,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 
 import DeleteIcon from '@material-ui/icons/Delete';
+import {StoreContext} from "../../context/StoreContext";
 const dummyPlaceholder = "http://lorempixel.com/400/200/food";
 const urlImg = "https://raw.githubusercontent.com/Maksss2018/beetroot-test/master/i/";
 /*
@@ -29,18 +27,23 @@ const urlImg = "https://raw.githubusercontent.com/Maksss2018/beetroot-test/maste
     }
 */
 const $ = (str) => document.getElementById(str);
-const MarketGridList = ({classes,list,getData, deleteItem,match, history,location}) => {
+const MarketGridList = ({classes ,match, history,location}) => {
+    const {state,actions} = useContext(StoreContext),
+        { deleteItem }= actions,
+        {items} = state;
     let [listOfItems,setListOfItems] = useState([]);
     useEffect(()=>{
-        if(list!==null){
-            setListOfItems(list);
+        if(items!==null){
+            setListOfItems(items);
         }
-    },[list]);
- useEffect(()=>{
-     if(localStorage.user!=="admin"&&location.pathname.split("/")[1] === "admin"){
-         history.push("/");
-     }
- },[]);
+        console.log(" state "+ JSON.stringify(state))
+        console.log(" state => items "+ JSON.stringify(items))
+    },[items]);
+    useEffect(()=>{
+        if(localStorage.user!=="admin"&&location.pathname.split("/")[1] === "admin"){
+            history.push("/");
+        }
+    },[]);
     return (
         <div  className={classes.root}>
             <GridList cellHeight={180} className={classes.gridList}>
@@ -48,7 +51,7 @@ const MarketGridList = ({classes,list,getData, deleteItem,match, history,locatio
                     <ListSubheader component="div">Our Menu:</ListSubheader>
                 </GridListTile>
                 {listOfItems.map( (tile)=>{
-                     let {img,_id,name,price} = tile;
+                    let {img,_id,name,price} = tile;
                     return  (
                         <GridListTile id={`${ _id}-container`} key={ _id}>
                             <img src={img!==null?`${urlImg}${img}`:dummyPlaceholder} alt={name} />
@@ -56,15 +59,16 @@ const MarketGridList = ({classes,list,getData, deleteItem,match, history,locatio
                                 title={ name}
                                 actionIcon={
                                     match.params.user === "admin" ?
-                                    <IconButton className={classes.icon}>
-                                        <DeleteIcon id={ _id} onClick={e=>{
-                                            /* not real necessary and correct way (because there is should be  component like Item )
-                                              part  but I want to add  some animation here */
-                                            const trg =  $(`${ _id}-container`);
-                                            trg.classList = `${trg.classList} fadeOut animated `;
-                                            setTimeout(()=>deleteItem( _id),600);
-                                        }} />
-                                    </IconButton>:""
+                                        <IconButton className={classes.icon}>
+                                            <DeleteIcon id={ _id} onClick={e=>{
+                                                /* not real necessary and correct way (because there is should be  component like Item )
+                                                  part  but I want to add  some animation here */
+                                                const trg =  $(`${ _id}-container`);
+                                                trg.classList = `${trg.classList} fadeOut animated `;
+                                                console.log(_id);
+                                                setTimeout(()=> deleteItem(_id,items),600);
+                                            }} />
+                                        </IconButton>:""
                                 }
                             />
                         </GridListTile>
@@ -97,15 +101,5 @@ const styles = theme => ({
 });
 
 
-const mapStateToProps = (state) => {
-    return {
-        items: state.items
-    }
-};
-const mapDispatchToProps = (dispatch) => ({
-    // deleteTrainingPlace: (key) => dispatch(getData(key)),
-});
+export default withStyles(styles)(MarketGridList)
 
-export default connect(false, false)(
-    withStyles(styles)(MarketGridList)
-)

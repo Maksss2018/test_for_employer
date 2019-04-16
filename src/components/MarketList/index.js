@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useContext,useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -15,32 +15,22 @@ import IconButton from '@material-ui/core/IconButton';
 import Clear from '@material-ui/icons/Clear';
 
 
-import {connect} from "react-redux";
+import {StoreContext} from "../../context/StoreContext";
 import PlusOneRounded from "../Form";
 
-import {  updateList, getNewList, delNewListItem } from "../../actions"
+
 
 const dummyPlaceholder = "http://lorempixel.com/400/200/food";
 const urlImg = "https://raw.githubusercontent.com/Maksss2018/beetroot-test/master/i/";
 
 
-const styles = theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
-    },
-    inline: {
-        display: 'inline',
-    },
-});
-
-
-const MarketList = ({ classes,items, delNewListItem, getNewList, newList}) => {
- /*   const handleDelete = id =>{
-        delNewListItem(id);
-    };
-*/
+const MarketList = ({ classes}) => {
+    const { state, dispatch, actions } = useContext(StoreContext);
+    let { items, newList } = state,
+        { updateList, getNewList, delNewListItem } = actions;
+    useEffect(()=>{
+    //    getNewList();
+    },[]);
     return (
         <Grid container
               direction="row"
@@ -78,25 +68,7 @@ const MarketList = ({ classes,items, delNewListItem, getNewList, newList}) => {
             <Grid item xs={4} >
                 Old list
                 <List className={classes.root}>
-                    {items!==null?items.map(item => (<ListItem
-                            key={item._id}
-                            alignItems="flex-start">
-                            <ListItemAvatar>
-                                <Avatar alt={item.name} src={`${urlImg}${item.img}`} />
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary={`${item.name}`}
-                                secondary={
-                                    <React.Fragment>
-                                        <Typography style={{
-                                            color:`#33691e`
-                                        }} component="span" className={classes.inline} >
-                                            {`${item.price} $`}
-                                        </Typography>
-                                    </React.Fragment>
-                                }
-                            />
-                        </ListItem>))
+                    {items!==null?JSON.stringify(items)
                         :"Loading"}
 
 
@@ -110,18 +82,16 @@ MarketList.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => {
-    return {
-        items: state.items,
-        newList :state.newList
-    }
-};
-const mapDispatchToProps = (dispatch) => ({
-    updateList: (array) => dispatch(updateList(array)),
-    getNewList : () => dispatch(getNewList()),
-    delNewListItem : (id) => dispatch(delNewListItem(id))
+const styles = theme => ({
+    root: {
+        width: '100%',
+        maxWidth: 360,
+        backgroundColor: theme.palette.background.paper,
+    },
+    inline: {
+        display: 'inline',
+    },
 });
 
-export default connect( mapStateToProps, mapDispatchToProps)(
-    withStyles(styles)(MarketList)
-)
+
+export default withStyles(styles)(MarketList)

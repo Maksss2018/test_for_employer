@@ -1,68 +1,83 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## This project was created by me to  show my  knowledge's in react , react-redux
+## technical task for this test was given by one of IT company's that  found me  in the net
 
-## Available Scripts
+So here is  what the task were:
+Position :  Front-end developer(ReactJs + Redux)
+conception : e-market (only catalog of goods + functionality like adding new goods to the list)   
 
-In the project directory, you can run:
+## First level : 
 
-### `npm start`
+Technology's stack: nodejs, Webpack, npm
+Libraries : React, material-ui
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Header it should contain the company logo, it should be imported into the component and attached by the webpack loader
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- The catalog of all goods, should be taken from the json-file, in
+ each product must be present: Product Name, Image, Short Description
 
-### `npm test`
+- On the product catalog, you can delete the product by clicking on button.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- At the bottom of the catalog or to the right (left) where
+ According to the developer it is more convenient to post information:
+    * The total number of goods,
+    * the sum of the prices of all goods
+    * the average price rounded to the hundredth
+    * And the  button "delete all" 
+! Important: The application must be assembled and minified by a webpack command from npm(npm start, npm run build). 
 
-### `npm run build`
+## Second level :
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Technology's stack: Babel, es6
+Libraries : react-router
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+- The menu that opens by clicking on the icon in top of header.
+  In the menu there should be a link to the product catalog page and to the product addition page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- New products need to be recorded in localStorage, images are not required (to simplify the task).
 
-### `npm run eject`
+- The application when navigating through the pages should not
+    reload the browser page. 
+    
+## Third level : 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Technology's stack: Redux
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Component to display information about all
+  products should be displayed on all pages and dynamically respond to adding,
+  deleting of goods items  (must be connected to Redux).
+ 
+- The application must be implemented system user roles (without login).
+  That is, the role system must be implemented (admin and user).
+ 
+- The is should be to role of user`s admin  and ordinary user.
+  
+- The role and current user enter manually in
+  application state before its launch. 
+  **I`ve  ignored this one option and make role changed  with login button, with out of verification -
+   to make codding faster**
+- Product add page must be unavailable
+  for the average user.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- In the case of a transition to this page should be
+  Displayed page with a ban.
+   **I`ve made an 404 massage**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- The directory must also be changed.
+  There should be no delete function for a regular user.  
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### npm modules  that have been  used in this project:
+ [Create React App](https://github.com/facebook/create-react-app) - was used  like template to make developing process going faster.
+ npm modules that I've  added to "cra" template:
+ @material-ui/core - this module I  used first time in my life - usually   I'm using  npm reactstrap
+ @material-ui/icons - the same  with this module 
+ material-ui - and this one
+ react-dom
+ react-redux
+ react-router
+ react-router-dom
+ react-router-redux
+ redux
+ redux-thunk
+ sass-loader
+ shortid - this module I  used to generate id  for  static data in "../../src/data.json"
