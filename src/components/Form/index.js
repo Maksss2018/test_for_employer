@@ -36,7 +36,7 @@ const initialData = {
 function Form({classes,history}) {
     const { state, dispatch, actions } = useContext(StoreContext);
     let { addItem,addItemLocal,updateNewList } = actions;
-    let [stateForm,setState] = useState(initialData);
+    let [stateForm,setStateForm] = useState(initialData);
     useEffect(()=>{
         if(localStorage.user!=="admin"){
             history.push("/");
@@ -45,67 +45,65 @@ function Form({classes,history}) {
 
     let [name,setName]=useState("");
 
-    const  handleChange = name => event => setState({...stateForm,[name]: event.target.value});
+    const  handleChange = name => event => setStateForm({...stateForm,[name]: event.target.value});
 
-    const  handleClear = event =>  setState(initialData);
+    const  handleClear = event =>  setStateForm(initialData);
 
     const  handleSubmit = async (event) => {
 
         event.preventDefault();
 
-        state._id = await id();
+        stateForm._id = await id();
 
-        updateNewList(state);
+        updateNewList(stateForm);
 
-        setState(initialData);
+        setStateForm(initialData);
 
     };
 
-    return (
-        <>
-            <form data-testid="form" onSubmit={handleSubmit}
-                  className={classes.container}
-                  noValidate
-                  autoComplete="on">
-                <Grid container
-                      direction="row"
-                      justify="center"
-                      alignItems="center"
-                >
-                    <Grid item  xs={2}>
-                        <TextField
-                            id="outlined-name"
-                            label="Name"
-                            value={state.name}
-                            onChange={ handleChange('name')}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                    </Grid>
-                    <Grid item  xs={2}>
-
-                        <TextField
-                            id="outlined-name"
-                            label="Price"
-                            value={state.price}
-                            onChange={ handleChange('price')}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                    </Grid>
-                    <Grid item  xs={2}>
-                        <IconButton type  color="inherit">
-                            <PlusOneRounded />
-                        </IconButton>
-                        <IconButton onClick={handleClear} color="inherit">
-                            <Clear />
-                        </IconButton>
-                    </Grid>
+    return (<>
+        <form data-testid="form" onSubmit={handleSubmit}
+              className={classes.container}
+              noValidate
+              autoComplete="on">
+            <Grid container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+            >
+                <Grid item  xs={2}>
+                    <TextField
+                        id="outlined-name"
+                        label="Name"
+                        value={stateForm.name}
+                        onChange={ handleChange('name')}
+                        margin="normal"
+                        variant="outlined"
+                    />
                 </Grid>
-            </form>
-            <MarketList/>
-        </>
-    );
+                <Grid item  xs={2}>
+
+                    <TextField
+                        id="outlined-name"
+                        label="Price"
+                        value={stateForm.price}
+                        onChange={ handleChange('price')}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                </Grid>
+                <Grid item  xs={2}>
+                    <IconButton type  color="inherit">
+                        <PlusOneRounded />
+                    </IconButton>
+                    <IconButton onClick={handleClear} color="inherit">
+                        <Clear />
+                    </IconButton>
+                </Grid>
+            </Grid>
+        </form>
+        <MarketList/>
+    </>);
 }
 
 

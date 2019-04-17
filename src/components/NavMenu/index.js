@@ -4,23 +4,18 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 
 import AddShoppingCart from '@material-ui/icons/AddShoppingCart';
 import EuroSymbol from '@material-ui/icons/EuroSymbol';
 import LocalDiningIcon from '@material-ui/icons/LocalDining';
 import DeleteIcon from '@material-ui/icons/Delete';
-import MenuIcon from '@material-ui/icons/Menu';
 
 import { withStyles } from '@material-ui/core/styles';
 
 import ComponentMenu from "./../ComponentMenu";
 import CustomTooltips from "./../CustomToolTips";
 
-
 import {StoreContext} from "../../context/StoreContext";
-
-
 
 
 const NavMenu = ({classes,location,match}) => {
@@ -39,10 +34,8 @@ const NavMenu = ({classes,location,match}) => {
     //items!==null?items.reduce((acc,cur)=> acc+parseInt(cur.price),0):0
     useEffect(()=>{
         if(items!==null){
-            console.dir(state);/*
-            setTotalPrice(items.items.reduce((acc,cur)=> acc+parseInt(cur.price),0));
-            setTotalLength(items.items.length);
-            */
+            setTotalPrice(items.reduce((acc,cur)=> acc+parseInt(cur.price),0));
+            setTotalLength(items.length);
         }
     },[items]);
     return (

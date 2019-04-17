@@ -33,22 +33,23 @@ export const useActions = (state , dispatch) => {
         })
     };
 
-    const updateNewList = (item) => (dispatch) => {
+    const updateNewList = (item) => {
         console.log(" NewList "+item);
         let trg =  JSON.parse(localStorage.newList);
         trg = [item,...trg];
+
         localStorage.newList =  JSON.stringify(trg);
-        return  dispatch ({
+          dispatch ({
             type: UPDATE_NEW_LIST,
             payload:  trg
         })
     };
-    const delNewListItem = (id) => (dispatch) => {
-
+    const delNewListItem = (id) =>  {
+      console.log(" delNewListItem = (id) = "+JSON.stringify(id));
         let trg =  JSON.parse(localStorage.newList),
             res = trg.filter( item => item._id!==id);
         localStorage.newList =  JSON.stringify(res);
-        return  dispatch ({
+          dispatch ({
             type: DELETE_ITEM_NEW_LIST,
             payload:  res
         })
