@@ -13,22 +13,19 @@ import Clear from '@material-ui/icons/Clear';
 const dummyPlaceholder = "http://lorempixel.com/400/200/food";
 
 const ListItemCustom = ({ classes, delNewListItem,item}) => {
-     const [thisItem,setThisItem]=useState({});
-    useEffect(()=>{
-        setThisItem(item);
-    },[item]);
+    console.log("+++");
 
     return (<>
             <ListItem  alignItems="flex-start">
                 <ListItemAvatar>
-                    <Avatar alt={`${ thisItem.name}`} src={ thisItem.img} />
+                    <Avatar alt={`${ item.name}`} src={ item.img} />
                 </ListItemAvatar>
                 <ListItemText
-                    primary={`${ thisItem.name}`}
+                    primary={`${ item.name}`}
                     secondary={
                         <React.Fragment>
                             <Typography component="span" className={classes.inline} color="textPrimary">
-                                {`${ thisItem.price}`}
+                                {`${ item.price}`}
                             </Typography>
                         </React.Fragment>
                     }
@@ -37,7 +34,7 @@ const ListItemCustom = ({ classes, delNewListItem,item}) => {
                     style={{
                         marginLeft:"auto"
                     }}
-                    onClick={e => delNewListItem(thisItem._id)}
+                    onClick={e => delNewListItem(item._id)}
                     color="inherit">
                     <Clear />
                 </IconButton>

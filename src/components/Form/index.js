@@ -34,16 +34,14 @@ const initialData = {
 
 
 function Form({classes,history}) {
-    const { state, dispatch, actions } = useContext(StoreContext);
-    let { addItem,addItemLocal,updateNewList } = actions;
+    const { actions } = useContext(StoreContext);
+    let {updateNewList } = actions;
     let [stateForm,setStateForm] = useState(initialData);
     useEffect(()=>{
         if(localStorage.user!=="admin"){
             history.push("/");
         }
     },[]);
-
-    let [name,setName]=useState("");
 
     const  handleChange = name => event => setStateForm({...stateForm,[name]: event.target.value});
 
@@ -106,8 +104,6 @@ function Form({classes,history}) {
     </>);
 }
 
-
-
 const styles = theme => ({
     container: {
         display: 'flex',
@@ -124,9 +120,6 @@ const styles = theme => ({
         width: 200,
     },
 });
-//updatNewList
-
-
 
 export default  withStyles(styles)(Form)
 

@@ -60,13 +60,11 @@ const MarketList = ({ classes}) => {
                             }
                         />
                     </ListItem>)):"Loading"}
-
-
                 </List>
             </Grid>
         </Grid>
     );
-}
+};
 
 MarketList.propTypes = {
     classes: PropTypes.object.isRequired,
