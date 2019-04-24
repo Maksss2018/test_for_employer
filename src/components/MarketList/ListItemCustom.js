@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from 'react';
+import React, {useEffect,useState, useMemo} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,7 +14,6 @@ const dummyPlaceholder = "http://lorempixel.com/400/200/food";
 
 const ListItemCustom = ({ classes, delNewListItem,item}) => {
     console.log("+++");
-
     return (<>
             <ListItem  alignItems="flex-start">
                 <ListItemAvatar>
@@ -41,11 +40,12 @@ const ListItemCustom = ({ classes, delNewListItem,item}) => {
             </ListItem>
         </>);
 };
-/*
+
 ListItemCustom.propTypes = {
     classes: PropTypes.object.isRequired,
+    delNewListItem: PropTypes.func.isRequired,
+    item: PropTypes.array.isRequired
 };
-*/
 const styles = theme => ({
     root: {
         width: '100%',

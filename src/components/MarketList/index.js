@@ -1,4 +1,4 @@
-import React, {useContext,useEffect} from 'react';
+import React, {useContext, useEffect, useMemo, memo} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -17,8 +17,9 @@ const urlImg = "https://raw.githubusercontent.com/Maksss2018/beetroot-test/maste
 
 const MarketList = ({ classes}) => {
     const { state, dispatch, actions } = useContext(StoreContext);
-    let { items, newList } = state,
-        { updateList, getNewList, delNewListItem } = actions;
+    let { updateList, getNewList, delNewListItem } = actions;
+    let itemsMem =  useMemo( () => state.items, [state.items]),
+        newListMem =  useMemo( () => state.newList, [state.newList]);
     useEffect(()=>{
         getNewList();
     },[]);
@@ -31,7 +32,7 @@ const MarketList = ({ classes}) => {
             <Grid item xs={4} >
                 New
                 <List className={classes.root}>
-                    {newList!==null?newList.map((item)=>(<ListItemCustom
+                    {newListMem!==null?newListMem.map((item)=>(<ListItemCustom
                         key={item._id}
                         item={item}
                         delNewListItem={delNewListItem}
@@ -41,7 +42,7 @@ const MarketList = ({ classes}) => {
             <Grid item xs={4} >
                 Old list
                 <List className={classes.root}>
-                    {items!==null?items.map(item => (<ListItem
+                    {itemsMem!==null?itemsMem.map(item => (<ListItem
                         key={item._id}
                         alignItems="flex-start">
                         <ListItemAvatar>
@@ -82,4 +83,4 @@ const styles = theme => ({
 });
 
 
-export default withStyles(styles)(MarketList)
+export default memo( withStyles(styles)( MarketList))

@@ -1,5 +1,5 @@
 'use strict';
-
+let workerProcess;
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
@@ -21,6 +21,7 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const clearConsole = require('react-dev-utils/clearConsole');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
+const child_process = require('child_process');
 const {
   choosePort,
   createCompiler,
@@ -115,6 +116,7 @@ checkBrowsers(paths.appPath, isInteractive)
       }
       console.log(chalk.cyan('Starting the development server...\n'));
       openBrowser(urls.localUrlForBrowser);
+
     });
 
     ['SIGINT', 'SIGTERM'].forEach(function(sig) {
@@ -123,10 +125,20 @@ checkBrowsers(paths.appPath, isInteractive)
         process.exit();
       });
     });
+    workerProcess = child_process.exec('  json-server --watch db.json ',(error, stdout, stderr)=>{
+      if (error) {
+        return console.error(error);
+      }
+      return console.dir(stdout);
+    })
   })
   .catch(err => {
     if (err && err.message) {
       console.log(err.message);
     }
     process.exit(1);
+    workerProcess.on('exit', (code)=>{
+      console.log('Child process exited with exit code '+code);
+    })
   });
+

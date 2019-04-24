@@ -72,7 +72,7 @@ const NavMenu = ({classes,location,match}) => {
                     </CustomTooltips>
                     <CustomTooltips text={" average dish price "} >
                         <IconButton color="inherit">
-                            <Badge max={10000} badgeContent={totalLength!==0?Math.round(totalPrice/totalLength):0} color="secondary">
+                            <Badge max={10000} badgeContent={ totalLength!==0?Math.round(totalPrice/totalLength):0} color="secondary">
                                 <LocalDiningIcon />
                             </Badge>
                         </IconButton>
@@ -96,7 +96,9 @@ const NavMenu = ({classes,location,match}) => {
 };
 
 NavMenu.propTypes = {
-
+    classes:PropTypes.object.isRequired,
+    location:PropTypes.object.isRequired,
+    match:PropTypes.object.isRequired
 };
 const styles = {
     root: {
